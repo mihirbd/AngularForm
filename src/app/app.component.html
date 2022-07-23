@@ -20,13 +20,14 @@
 
     <tr>
       <td>Email:</td>
-      <td><input required minlength="5" maxlength="30" type="email" name="email" placeholder="Enter Your Email"
-          [(ngModel)]="information.email" #email="ngModel"></td>
+      <td><input required minlength="5" maxlength="30" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" type="email"
+          name="email" placeholder="Enter Your Email" [(ngModel)]="information.email" #email="ngModel"></td>
     </tr>
     <tr>
       <td></td>
       <td class="text-danger">
         <span *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+          <p *ngIf="email?.hasError('pattern')"> Invalid Email! Please Enter a Valid Email</p>
           <p *ngIf="email?.hasError('required')"> Invalid! please Enter Email</p>
           <p *ngIf="email?.hasError('minlength')"> Invalid! please Enter at least 5 charecter</p>
         </span>
